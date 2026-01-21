@@ -1,0 +1,14 @@
+managed; //implementation in class zbp_ekf_rv_projects unique;
+//strict ( 2 );
+
+define behavior for zekf_rv_projects //alias <alias_name>
+persistent table zekf_t_projects
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+  create;// ( authorization : global );
+  update;
+  delete;
+//  field ( readonly ) ProjectId;
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Projects'
+define service Zekf_sd_service_def {
+  expose zekf_rv_projects;
+}

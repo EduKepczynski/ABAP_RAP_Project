@@ -1,0 +1,51 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: { typeName: 'Project',
+                typeNamePlural: 'Projects',
+                title: { type: #STANDARD, label: 'Project', value: 'ProjectId' } }
+              }
+
+annotate entity zekf_rv_projects with
+{
+  @UI: { lineItem:       [ { position: 10 } ],
+         lineItem:       [ { label: 'Project ID' } ], // Change the description of the column in main page
+         identification: [ { position: 10 } ],
+         selectionField: [ { position: 10 } ],
+         dataFieldDefault: [{label: 'Project ID'}] } // Change the description of the field in the filter option of the column
+  ProjectId;
+
+  @UI: { lineItem:       [ { position: 20,
+                             label: 'Start Date' } ], // Also change the description of the column in main page
+         identification: [ { position: 20 } ],
+         selectionField: [ { position: 20 } ] }
+  @UI.dataFieldDefault:  [ {label: 'Start Date' } ] // Complete annotation to change the description of the field in the filter option
+  StartDate;
+
+  @UI: { lineItem:       [ { position: 30 } ],
+         identification: [ { position: 30 } ],
+         selectionField: [ { position: 30 } ] }
+  @EndUserText.label: 'End Date' // This annotation change the description of this field in the header filter, the main page column and it's filter
+                                 // It's better to use this one instead of the annotations above
+                                 // If we delete this annotation, the data element description will be shown in the filters and main page
+  EndDate;
+
+  @UI: { lineItem:       [ { position: 40 } ],
+         identification: [ { position: 40 } ],
+         selectionField: [ { position: 40 } ] }
+  CurrencyCode;
+
+  // The Budget and Manager fields didn't have the description in the data element,
+  // so they are shown as described in the Root View AS clause
+  @UI: { lineItem:       [ { position: 50 } ],
+         identification: [ { position: 50 } ],
+         selectionField: [ { position: 50 } ] }
+  Budget;
+
+  // To chance the name of this field we also need to change the AS clause in Root View
+  @UI: { lineItem:       [ { position: 60 } ],
+         identification: [ { position: 60 } ],
+         selectionField: [ { position: 60 } ] }
+  Manager;
+
+}

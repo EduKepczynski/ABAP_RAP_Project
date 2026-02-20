@@ -8,11 +8,18 @@
 
 annotate entity zekf_rv_projects with
 {
+
+  @UI.facet: [ { id:              'Projects',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'Projects',
+                 position:        10 } ]
   @UI: { lineItem:       [ { position: 10 } ],
          lineItem:       [ { label: 'Project ID' } ], // Change the description of the column in main page
          identification: [ { position: 10 } ],
          selectionField: [ { position: 10 } ],
          dataFieldDefault: [{label: 'Project ID'}] } // Change the description of the field in the filter option of the column
+@EndUserText.label: 'Project ID' // Added this line because it was incorrect when creating a new project
   ProjectId;
 
   @UI: { lineItem:       [ { position: 20,
@@ -20,6 +27,7 @@ annotate entity zekf_rv_projects with
          identification: [ { position: 20 } ],
          selectionField: [ { position: 20 } ] }
   @UI.dataFieldDefault:  [ {label: 'Start Date' } ] // Complete annotation to change the description of the field in the filter option
+  @EndUserText.label: 'Start Date' // Added this line because it was incorrect when creating a new project
   StartDate;
 
   @UI: { lineItem:       [ { position: 30 } ],
@@ -30,22 +38,25 @@ annotate entity zekf_rv_projects with
                                  // If we delete this annotation, the data element description will be shown in the filters and main page
   EndDate;
 
+  // The Budget and Manager fields didn't have the description in the data element,
+  // so they are shown as described in the Root View AS clause
   @UI: { lineItem:       [ { position: 40 } ],
          identification: [ { position: 40 } ],
          selectionField: [ { position: 40 } ] }
-  CurrencyCode;
-
-  // The Budget and Manager fields didn't have the description in the data element,
-  // so they are shown as described in the Root View AS clause
+  @EndUserText.label: 'Budget'
+  Budget;
+  
   @UI: { lineItem:       [ { position: 50 } ],
          identification: [ { position: 50 } ],
          selectionField: [ { position: 50 } ] }
-  Budget;
+  @EndUserText.label: 'Currency Code'
+  CurrencyCode;
 
   // To chance the name of this field we also need to change the AS clause in Root View
   @UI: { lineItem:       [ { position: 60 } ],
          identification: [ { position: 60 } ],
          selectionField: [ { position: 60 } ] }
+  @EndUserText.label: 'Manager'
   Manager;
 
 }

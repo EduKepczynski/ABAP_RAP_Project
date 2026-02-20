@@ -1,14 +1,36 @@
-managed; //implementation in class zbp_ekf_rv_projects unique;
-//strict ( 2 );
+managed implementation in class zcl_projects_crud unique;
+strict( 2 );
+with draft;
 
-define behavior for zekf_rv_projects //alias <alias_name>
+define behavior for zekf_rv_projects
 persistent table zekf_t_projects
+draft table zekf_d_projects
 lock master
-//authorization master ( instance )
-//etag master <field_name>
+total etag ProjectId
+authorization master ( instance )
+
+
 {
-  create;// ( authorization : global );
+  create ( authorization : global );
   update;
   delete;
-//  field ( readonly ) ProjectId;
+  draft determine action Prepare;
+  field ( readonly : update ) ProjectId;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+
+  field ( features : instance ) Budget;
+
+  mapping for zekf_t_projects
+    {
+      ProjectId    = project_id;
+      StartDate    = start_date;
+      EndDate      = end_date;
+      Budget       = budget;
+      CurrencyCode = currency_code;
+      Manager      = manager;
+    }
 }
